@@ -18,4 +18,11 @@ export default defineConfig(async () => ({
       ignored: ["**/src-tauri/**"],
     },
   },
+  // proxy: {
+  //   '/api': {
+  //     target: 'https://api-music.cenguigui.cn',
+  //     changeOrigin: true,
+  //     rewrite: (path) => path.replace(/^\/api/, ''),
+  //   },
+  // },
 }));
