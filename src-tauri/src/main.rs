@@ -19,6 +19,7 @@ async fn fetch_data(interface: String, param1: Option<String>, param2: Option<St
     let data = match interface.as_str() {
         "pop" => api::get_homepage_pop().await.unwrap_or_default(),
         "song_details" => api::get_song_details(&param1).await.unwrap_or_default(),
+        "search_songs"=>api::search_songs(&param1).await.unwrap_or_default(),
         _ => "{}".to_string(),
     };
 

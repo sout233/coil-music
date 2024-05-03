@@ -1,11 +1,11 @@
 import "./App.css";
 import BottomControlPanel from "./BottomControlPanel";
-import CenterView from "./CenterView";
+import SearchResultList from "./SearchResultList";
 
 function App() {
   return (
     <div className="container h-screen flex flex-col w-screen">
-      <CenterView/>
+      <SearchResultList/>
       <BottomControlPanel/>
     </div>
   );

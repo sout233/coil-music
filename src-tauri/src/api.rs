@@ -17,3 +17,12 @@ pub async fn get_song_details(id: &str) -> Result<String, Error> {
 
     Ok(response)
 }
+
+pub async fn search_songs(keywords: &str) -> Result<String, Error> {
+    let response = reqwest::get(&format!("https://api-music.cenguigui.cn/search?keywords={}", keywords))
+        .await?
+        .text()
+        .await?;
+
+    Ok(response)
+}

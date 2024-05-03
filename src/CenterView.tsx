@@ -47,7 +47,7 @@ function CenterView() {
             }
         };
 
-        fetchData();
+        // fetchData();
     }, []);
 
     // if (!data) {
