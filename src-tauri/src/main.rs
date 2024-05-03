@@ -1,7 +1,7 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
-use std::future::IntoFuture;
+use tauri::Manager;
 
 mod api;
 
@@ -9,6 +9,11 @@ mod api;
 #[tauri::command]
 fn greet(name: &str) -> String {
     format!("Hello, {}! You've been greeted from Rust!", name)
+}
+
+#[derive(Clone, serde::Serialize)]
+struct Payload {
+    message: String,
 }
 
 #[tauri::command]
@@ -19,7 +24,7 @@ async fn fetch_data(interface: String, param1: Option<String>, param2: Option<St
     let data = match interface.as_str() {
         "pop" => api::get_homepage_pop().await.unwrap_or_default(),
         "song_details" => api::get_song_details(&param1).await.unwrap_or_default(),
-        "search_songs"=>api::search_songs(&param1).await.unwrap_or_default(),
+        "search_songs" => api::search_songs(&param1).await.unwrap_or_default(),
         _ => "{}".to_string(),
     };
 

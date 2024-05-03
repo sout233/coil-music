@@ -16,13 +16,14 @@ class Song {
     }
 }
 
-function BottomControlPanel() {
+function BottomControlPanel({ onDataChange }:any) {
     const [inputValue, setInputValue] = useState('');
     const [rangeValue, setRangeValue] = useState('0');
 
     const fetchData = async () => {
+        let newSongs: Song[] = [];
+
         try {
-            let newSongs: Song[] = [];
 
             let json = await invoke("fetch_data", { interface: "search_songs", param1: inputValue }) as string;
             let result = JSON.parse(json).result.songs;
@@ -43,9 +44,14 @@ function BottomControlPanel() {
             newSongs.push(...songs);
 
             console.log(newSongs);
+
+            onDataChange(newSongs);
         } catch (error) {
             console.error(error);
+            return "";
         }
+
+        return newSongs;
     };
 
     function handleClick() {
